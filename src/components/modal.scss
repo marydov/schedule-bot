@@ -1,0 +1,30 @@
+.modal {
+    width: 100vw; //розтягуємо ширину модального вікна на весь екран
+    height: 100vh; //розтягуємо висоту модального вікна на весь екран
+    background-color: rgba(0,0,0,0.4);
+    position: fixed; //так модальне вікно при скролі буде залишатись посередині
+    top: 0; //приклеїти до верху
+    right: 0; //приклеїти до правої сторони
+    bottom: 0; //приклеїти до низу
+    left: 0; //приклеїти до лівої сторони, загалом фіксується посередині сторінки
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal__content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    // width: 30vw;//висоту і ширину відкоригувати
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+.modal__content.active {transform: scale(1);}
+
