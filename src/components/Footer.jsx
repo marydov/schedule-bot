@@ -3,7 +3,7 @@ export default function Footer() {
       <footer>
         Виконано: {' '}
         <span>Орищук Марина</span>{' '}
-        &copy; 2022
+        &copy; 2023
       </footer>
     );
   }

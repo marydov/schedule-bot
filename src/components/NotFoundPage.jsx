@@ -1,6 +1,6 @@
 export default function NotFoundPage() {
     return (
-      <div className="error-message">
+      <div className="error__message-404">
         <p>
           <i>Oops, something went wrong.</i>
         </p>

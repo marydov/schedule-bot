@@ -1,12 +1,12 @@
-// import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 export default function RegistrationForm() {
-//  const [name, setName] = useState('');
-//  const [email, setEmail] = useState('');
-//  const [password, setPassword] = useState('');
+
+    const { updateUserName } = useContext(User);
 
     const navigate = useNavigate();
 
@@ -40,9 +40,10 @@ export default function RegistrationForm() {
                     alert('You are already registered!');
                 }else {
                     alert('Registration successful!');
-                    setSubmitting(false);
+                    updateUserName(values.name);
+                    setSubmitting(false);//isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
                     navigate(`/tasks`);
-                    resetForm();
+                    resetForm();//скинути форму
                 }
             })
             .catch((error) => {
@@ -56,10 +57,12 @@ const SignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'Must be at least 3 characters!')
       .max(20, 'Must be 20 characters or less!')
+      .matches(/^[a-zA-Z0-9]+$/, 'Only letters and numbers are allowed')//^ початок рядка $ кінець рядка [a-zA-Z0-9] регулярний вираз(всі букви, всі цифри)
       .required('Required'),
     password: Yup.string()
       .min(8, 'Must be at least 8 characters!')
       .max(20, 'Must be 20 characters or less!')
+      .matches(/^[a-zA-Z0-9]+$/, 'Only letters and numbers are allowed')
       .required('Required'),
     email: Yup.string()
       .email('Invalid email')
@@ -77,31 +80,32 @@ return (
         validationSchema={SignupSchema}
         onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting }) => ( //isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
+            //можна додати className для форми, полів, помилки та прописати їм стилі (де розташувати, шрифт, колір і т.д.)
             <Form>
                 <h1>Registration</h1>
-                <div>
+                <div className='input__container-form'>
                     <div>
                         <label htmlFor="name">Name:</label>
                     </div>
                     <Field name="name" />
-                    <ErrorMessage name="name" />
+                    <ErrorMessage name="name" render={msg => <p className="error__message-form">{msg}</p>} />
                 </div>
-                <div>
+                <div className='input__container-form'>
                     <div>
                         <label htmlFor="email">Email:</label>
                     </div>
-                    <Field name="email" />
-                    <ErrorMessage name="email" />
+                    <Field name="email" type="email" />
+                    <ErrorMessage name="email" render={msg => <p className="error__message-form">{msg}</p>} />
                 </div>
-                <div>
+                <div className='input__container-form'>
                     <div>
                         <label htmlFor="password">Password:</label>
                     </div>
-                    <Field name="password" />
-                    <ErrorMessage name="password" />
+                    <Field name="password" type="password" />
+                    <ErrorMessage name="password" render={msg => <p className="error__message-form">{msg}</p>} />
                 </div>
-                    <button type="submit" disabled={isSubmitting}>Submit</button>
+                <button type="submit" disabled={isSubmitting}>Submit</button>
             </Form>
             )}
         </Formik>

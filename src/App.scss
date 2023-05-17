@@ -15,7 +15,7 @@
 .App {
   @include vertical-list;
   min-height: 100vh;
-  background-color: #eafdff;
+  background-color: #e9f4f7;
   color: #000;
   font-family: 'Heebo', 'Mouse Memoirs', sans-serif;
   font-weight: 400;
@@ -29,7 +29,11 @@ main {
   @include center-element;
 }
 
-.error-message {
+.open-btn {
+  margin: 10px;
+}
+
+.error__message-404 {
   position: absolute;
   left: 0;
   right: 0;
@@ -40,9 +44,67 @@ main {
   font: 3em sans-serif;
 }
 
+.user-name__header {
+  // display: flex;
+  // justify-content: end; header переписати
+  min-width: 100px;
+  min-height: 25px;
+  margin: 0 100px;
+  padding: 5px;
+  border: solid 2px #777;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
+
 footer {
   flex-shrink: 0;
   height: 56px;
   text-align: center;
   padding: $middle-m-p;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+    color: #777;
+  }
+
+  label {
+    margin-top: 20px;
+  }
+
+  input {
+    font-size: 1.2em;
+  }
+
+  .input__container-form {
+    position: relative;
+  }
+
+  .error__message-form {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    background-color: #fff;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #ff0000;
+  }
+}
+
+button {
+  background: #1997BF;
+  min-width: 100px;
+  padding: 10px;
+  color: #fff;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+

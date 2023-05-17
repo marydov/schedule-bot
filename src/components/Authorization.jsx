@@ -5,9 +5,8 @@ import LoginForm from "./LoginForm";
 
 export default function Authorization() {
 
-    const[modalActive, setModalActive] = useState(false);
-
-        const [showLoginForm, setShowLoginForm] = useState(false);
+  const[modalActive, setModalActive] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
   const handleLoginClick = () => {
@@ -30,6 +29,7 @@ export default function Authorization() {
       <p>Не вітаєте друзів з Днем Народження?</p>
       <p>Ми нагадаємо вам про всі важливі справи!</p>
       <p>Проходьте реєстрацію і заповнюйте свій розклад.</p>
+      <p><strong>*Важливо!</strong> В якості name використовуйте виключно username, під яким ви зареєстровані в Телеграмі.</p>
       <div>
         <button className='open-btn' onClick={handleLoginClick}>Login</button>
         <button className='open-btn' onClick={handleRegistrationClick}>Register</button>
@@ -41,33 +41,4 @@ export default function Authorization() {
     </Modal>
   </>
  );
-
-
-
-//     const [showLoginForm, setShowLoginForm] = useState(false);
-//   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
-
-//   const handleLoginClick = () => {
-//     setShowLoginForm(true);
-//     setShowRegistrationForm(false);
-//   };
-
-//   const handleRegistrationClick = () => {
-//     setShowLoginForm(false);
-//     setShowRegistrationForm(true);
-//   };
-
-//   return (
-//     <div>
-//         <p>
-//      Часто забуваєте про заплановані справи? Запізнюєтесь на зустрічі? Не вітаєте
-//      друзів з Днем Народження? Проходьте реєстрацію і ми нагадаємо вам про всі
-//      важливі справи!
-//     </p>
-//       <button onClick={handleLoginClick}>Login</button>
-//       <button onClick={handleRegistrationClick}>Register</button>
-//       {showLoginForm && <LoginForm />}
-//       {showRegistrationForm && <RegistrationForm />}
-//     </div>
-//   );
 }
