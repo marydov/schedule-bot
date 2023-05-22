@@ -12,6 +12,12 @@ import "./App.scss";
 function App() {
   const [userName, setUserName] = useState('');
 
+  // const [task, setTask] = useState({
+  //   dateTime: null,
+  //   taskDescr: ''
+  // })
+  //це повинен бути набір задач, до якого додається новоутворена задача
+
   function updateUserName(value) {
     setUserName(value);
   }
