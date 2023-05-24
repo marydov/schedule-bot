@@ -8,15 +8,12 @@ import Tasks from './components/Tasks';
 import NotFoundPage from './components/NotFoundPage';
 import Layout from './components/Layout';
 import "./App.scss";
+import { TaskList } from "./context/use-tasks";
 
 function App() {
   const [userName, setUserName] = useState('');
 
-  // const [task, setTask] = useState({
-  //   dateTime: null,
-  //   taskDescr: ''
-  // })
-  //це повинен бути набір задач, до якого додається новоутворена задача
+  const [taskList, setTaskList] = useState([]);//набір задач, до якого додається новоутворена задача
 
   function updateUserName(value) {
     setUserName(value);
@@ -25,15 +22,17 @@ function App() {
   return (
     <>
       <User.Provider value={{userName, updateUserName}}>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Authorization />} />
-              <Route path="tasks" element={<Tasks />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-        </HashRouter>
+        <TaskList.Provider value={{ taskList, setTaskList }}>
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Authorization />} />
+                <Route path="tasks" element={<Tasks />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </HashRouter>
+        </TaskList.Provider>
       </User.Provider>
     </>
   );

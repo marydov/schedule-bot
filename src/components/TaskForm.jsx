@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { User } from '../context/use-user';
+import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +8,7 @@ import * as Yup from 'yup';
 export default function TaskForm() {
 
     const { userName } = useContext(User);
+    const { taskList, setTaskList } = useContext(TaskList);
 
     const today = new Date();
     const currentHours = today.getHours();
@@ -43,9 +45,13 @@ export default function TaskForm() {
                 console.log(regResult);
                 if(regResult.mystatus === 'Task created') {
                     alert('Successful task creation!');
-                    //тут треба додати цю задачу до загального списку задач (в стейт)
+                    const newTask = {
+                        dateTime: values.dateTime, 
+                        taskDescr: values.taskDescr,
+                    }
+                    setTaskList([...taskList, newTask]);//додаємо цю задачу до загального списку задач (в стейт)
                     setSubmitting(false);
-                    resetForm();//скинути форму
+                    resetForm();
                 }
             })
             .catch((error) => {
@@ -59,8 +65,6 @@ export default function TaskForm() {
         dateTime: Yup.date()
         .min(today, 'Date and time cannot be in the past')
         .required('Required'),
-            // time: Yup.string()
-            // .required('Required'),
         taskDescr: Yup.string()
         .required('Required'),
     });
@@ -83,10 +87,6 @@ export default function TaskForm() {
                                 <Field name="dateTime" type="datetime-local" />
                                 <ErrorMessage name="dateTime" render={msg => <p className="error__message-form">{msg}</p>} />
                             </Col>
-                            {/* <Col md={1} className='input__container-form'>
-                                <Field name="time" type="time" />
-                                <ErrorMessage name="time" render={msg => <p className="error__message-form">{msg}</p>} />
-                            </Col> */}
                             <Col md={7} className='input__container-form'>
                                 <Field as="textarea" name="taskDescr" rows="1" cols="110" />
                                 <ErrorMessage name="taskDescr" render={msg => <p className="error__message-form">{msg}</p>} />

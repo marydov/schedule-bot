@@ -3,10 +3,36 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { TaskList } from '../context/use-tasks';
+
+const setTasks = async (userName, setTaskList) => {
+    const url = "https://script.google.com/macros/s/AKfycbzR7_MG6Tqi8Y7cdmsRGH66Ill0cPAsiBbfx7UAVtmC9K29prLCrY989dtXA5tV-VI6/exec?action=getTasks&name="+userName;
+
+    await fetch(url)
+            .then(response => {
+                console.log(response)
+                console.log(response.status)
+                if(!response.ok) throw new Error(response.status);
+                else {
+                    return response.text();
+                }
+            })
+            .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
+                console.log({data});
+                const regResult = JSON.parse(data);
+                console.log(regResult);
+                setTaskList(regResult.arr);
+            })
+            .catch((error) => {
+                alert(error.message);
+                console.log({error});
+            });
+}
 
 export default function LoginForm() {
 
     const { updateUserName } = useContext(User);
+    const { setTaskList } = useContext(TaskList);
 
     const navigate = useNavigate();
 
@@ -23,7 +49,7 @@ export default function LoginForm() {
                     return response.text();
                 }
             })
-            .then((data) => { //data - результат виконання setUserData з бекенду, те, що повертає return
+            .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
                 console.log({data});
                 const regResult = JSON.parse(data);
                 console.log(regResult);
@@ -35,6 +61,7 @@ export default function LoginForm() {
                     alert('Login successful!');
                     updateUserName(values.name);
                     setSubmitting(false);//isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
+                    setTasks(values.name, setTaskList);//функція з гет-запитом на список задач
                     navigate(`/tasks`);
                     resetForm();//скинути форму
                 }

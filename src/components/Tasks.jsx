@@ -1,11 +1,14 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../context/use-user';
+import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
 import TaskForm from './TaskForm';
+import Task from './Task';
 
 export default function Tasks() {
     const { userName } = useContext(User);
+    const { taskList } = useContext(TaskList);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,9 +19,6 @@ export default function Tasks() {
 
     return (
         <>
-            <p>
-                Це сторінка задач
-            </p>
             <p>Привіт, {userName}</p>
             <article className="task-container">
                 <Row className="d-flex p-2">
@@ -27,6 +27,11 @@ export default function Tasks() {
                     <Col md={6}><strong>Task Description</strong></Col>
                     <Col md={3}></Col>
                 </Row>
+            </article>
+            <article className="task-container">
+                {taskList.map((el) => (
+                <Task key={el.id} item={el} />
+                ))}
             </article>
             <p><b>Додати задачу:</b></p>
             <TaskForm />

@@ -1,18 +1,20 @@
 import { Row, Col } from 'react-bootstrap';
+import moment from 'moment/moment';
 
-export default function Task({task}) {
+export default function Task({item}) {
+
+    const curDate = moment(item.dateTime).format('Do MMMM YYYY');
+    const curTime = moment(item.dateTime).format('h:mm:ss a');
 
     return (
         <>
-            <article className="task-container">
-                <Row className="d-flex p-2">
-                    <Col md={2}>{task.taskDate}</Col>
-                    <Col md={2}>{task.taskTime}</Col>
-                    <Col md={5}>{task.taskDescr}</Col>
-                    <Col md={1}><button className='btn__task-form'>Видалити</button></Col>
-                    <Col md={2}><button className='btn__task-form'>Редагувати</button></Col>
-                </Row>
-            </article>
+            <Row className="d-flex p-2">
+                <Col md={2}>{curDate}</Col>
+                <Col md={1}>{curTime}</Col>
+                <Col md={6}>{item.taskDescr}</Col>
+                <Col md={1}><button className='btn__task-form'>Видалити</button></Col>
+                <Col md={2}><button className='btn__task-form'>Редагувати</button></Col>
+            </Row>
         </>
     );
 }
