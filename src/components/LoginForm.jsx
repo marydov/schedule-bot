@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { TaskList } from '../context/use-tasks';
 
 const setTasks = async (userName, setTaskList) => {
-    const url = "https://script.google.com/macros/s/AKfycbzR7_MG6Tqi8Y7cdmsRGH66Ill0cPAsiBbfx7UAVtmC9K29prLCrY989dtXA5tV-VI6/exec?action=getTasks&name="+userName;
+    const url = "https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec?action=getTasks&name="+userName;
 
     await fetch(url)
             .then(response => {
@@ -21,7 +21,7 @@ const setTasks = async (userName, setTaskList) => {
                 console.log({data});
                 const regResult = JSON.parse(data);
                 console.log(regResult);
-                setTaskList(regResult.arr);
+                setTaskList(regResult.arrCurrentTasks);
             })
             .catch((error) => {
                 alert(error.message);
@@ -38,7 +38,7 @@ export default function LoginForm() {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
 
-        const url = "https://script.google.com/macros/s/AKfycbzR7_MG6Tqi8Y7cdmsRGH66Ill0cPAsiBbfx7UAVtmC9K29prLCrY989dtXA5tV-VI6/exec?action=login&name="+values.name+"&password="+values.password;
+        const url = "https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec?action=login&name="+values.name+"&password="+values.password;
         
         await fetch(url)
             .then(response => {

@@ -20,6 +20,8 @@ export default function Tasks() {
     return (
         <>
             <p>Привіт, {userName}</p>
+            {/* Додати посилання на бот із закликом створити чат, натиснувши старт, після цього дописати дані на бекенд (як???) */}
+            <p>Якщо Ви ще не активували чат-бота у телеграмі, перейдіть за <a href='https://t.me/mydailytodolist_bot' target="_blank" rel="noopener noreferrer">посиланням</a> і натисніть Start. Без цього ми не зможемо нагадувати Вам про Ваші щоденні справи.</p>
             <article className="task-container">
                 <Row className="d-flex p-2">
                     <Col md={2}><strong>Date</strong></Col>

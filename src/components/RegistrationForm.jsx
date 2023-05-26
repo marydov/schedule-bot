@@ -12,7 +12,7 @@ export default function RegistrationForm() {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
 
-        const url = 'https://script.google.com/macros/s/AKfycbzR7_MG6Tqi8Y7cdmsRGH66Ill0cPAsiBbfx7UAVtmC9K29prLCrY989dtXA5tV-VI6/exec';
+        const url = 'https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec';
         
         const options = {
             method: 'POST',
