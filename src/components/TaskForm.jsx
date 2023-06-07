@@ -15,6 +15,7 @@ export default function TaskForm() {
     const currentMinutes = today.getMinutes();
     const currentSeconds = today.getSeconds();
     const currentMilliseconds = today.getMilliseconds();
+    const taskID = today.getTime();
     today.setHours(currentHours, currentMinutes, currentSeconds, currentMilliseconds);
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -26,8 +27,10 @@ export default function TaskForm() {
             body: JSON.stringify({
                     route: 'newTask',
                     name: userName,
-                    dateTime: values.dateTime,
+                    dateTime: values.dateTime, 
                     taskDescr: values.taskDescr,
+                    taskID: taskID,
+                    remind: values.remind,
          })}
         
         await fetch(url, options)
@@ -48,8 +51,12 @@ export default function TaskForm() {
                     const newTask = {
                         dateTime: values.dateTime, 
                         taskDescr: values.taskDescr,
-                    }
-                    setTaskList([...taskList, newTask]);//додаємо цю задачу до загального списку задач (в стейт)
+                        taskID: taskID,
+                        remind: values.remind,
+                    };
+                    const newTaskList = [...taskList, newTask];// Додаємо нову задачу до масиву даних
+                    localStorage.setItem('tasks', JSON.stringify(newTaskList));// Зберігаємо оновлений масив даних в LocalStorage
+                    setTaskList(newTaskList);// Оновлюємо стан компонента (стейт)
                     setSubmitting(false);
                     resetForm();
                 }
@@ -67,6 +74,8 @@ export default function TaskForm() {
         .required('Required'),
         taskDescr: Yup.string()
         .required('Required'),
+        remind: Yup.string()
+        .required('Required'),
     });
 
     return (
@@ -74,8 +83,8 @@ export default function TaskForm() {
             <Formik
             initialValues={{
             dateTime: '',
-            // time: '',
             taskDescr: '',
+            remind: '',
             }}
             validationSchema={SignupSchema}
             onSubmit={handleSubmit}
@@ -83,18 +92,26 @@ export default function TaskForm() {
                 {({ isSubmitting }) => (
                     <Form className="task-container">
                         <Row className="d-flex p-2">
-                            <Col md={2} className='input__container-form'>
+                            <Col md={3} className='input__container-form'>
                                 <Field name="dateTime" type="datetime-local" />
                                 <ErrorMessage name="dateTime" render={msg => <p className="error__message-form">{msg}</p>} />
                             </Col>
-                            <Col md={7} className='input__container-form'>
-                                <Field as="textarea" name="taskDescr" rows="1" cols="110" />
+                            <Col md={5} className='input__container-form'>
+                                <Field as="textarea" name="taskDescr" rows="1" className="taskDescr__textarea" />
                                 <ErrorMessage name="taskDescr" render={msg => <p className="error__message-form">{msg}</p>} />
+                            </Col>
+                            <Col md={2} className='input__container-form'>
+                                <Field as="select" name="remind">
+                                    <option value="">Нагадувати</option>
+                                    <option value="once">Одноразово</option>
+                                    <option value="annually">Щорічно</option>
+                                </Field>
+                                <ErrorMessage name="remind" render={msg => <p className="error__message-form">{msg}</p>} />
                             </Col>
                             <Col md={1}>
                                 <button type="submit" className='btn__task-form' disabled={isSubmitting}>Додати</button>
                             </Col>
-                            <Col md={2}>
+                            <Col md={1}>
                                 <button type="reset" className='btn__task-form'>Видалити</button>
                             </Col>
                         </Row>                   

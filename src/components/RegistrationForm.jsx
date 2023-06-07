@@ -40,8 +40,11 @@ export default function RegistrationForm() {
                     alert('You are already registered!');
                 }else {
                     alert('Registration successful!');
-                    updateUserName(values.name);
                     setSubmitting(false);//isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
+                    localStorage.setItem('user', JSON.stringify({name: values.name, password: values.password}));
+                    const lsData = localStorage.getItem('user');
+                    const person = JSON.parse(lsData);
+                    updateUserName(person.name);
                     navigate(`/tasks`);
                     resetForm();//скинути форму
                 }

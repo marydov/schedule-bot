@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 export default function Layout(props) {
     return (
       <div className="App">
-        <Header setUserName={props.setUserName} />
+        <Header setUserName={props.setUserName} />        
         <main>
           <Outlet />
         </main>

@@ -10,8 +10,11 @@ import Layout from './components/Layout';
 import "./App.scss";
 import { TaskList } from "./context/use-tasks";
 
+const lsData = localStorage.getItem('user');
+const person = JSON.parse(lsData);
+
 function App() {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState(person.name);
 
   const [taskList, setTaskList] = useState([]);//набір задач, до якого додається новоутворена задача
 

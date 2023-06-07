@@ -4,30 +4,7 @@ import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { TaskList } from '../context/use-tasks';
-
-const setTasks = async (userName, setTaskList) => {
-    const url = "https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec?action=getTasks&name="+userName;
-
-    await fetch(url)
-            .then(response => {
-                console.log(response)
-                console.log(response.status)
-                if(!response.ok) throw new Error(response.status);
-                else {
-                    return response.text();
-                }
-            })
-            .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
-                console.log({data});
-                const regResult = JSON.parse(data);
-                console.log(regResult);
-                setTaskList(regResult.arrCurrentTasks);
-            })
-            .catch((error) => {
-                alert(error.message);
-                console.log({error});
-            });
-}
+import { getTasks } from '../utils/getTask';
 
 export default function LoginForm() {
 
@@ -58,10 +35,13 @@ export default function LoginForm() {
                 }else if(regResult.mystatus === 'There is no user with this name') {
                     alert('There is no user with this name. Please register!');
                 }else {
-                    alert('Login successful!');
-                    updateUserName(values.name);
+                    alert('Login successful!');    
                     setSubmitting(false);//isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
-                    setTasks(values.name, setTaskList);//функція з гет-запитом на список задач
+                    localStorage.setItem('user', JSON.stringify({name: values.name, password: values.password}));
+                    const lsData = localStorage.getItem('user');
+                    const person = JSON.parse(lsData);
+                    updateUserName(person.name);
+                    getTasks(person.name, setTaskList);//функція з гет-запитом на список задач
                     navigate(`/tasks`);
                     resetForm();//скинути форму
                 }
@@ -99,7 +79,7 @@ export default function LoginForm() {
                 {({ isSubmitting }) => ( //isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
                 //можна додати className для форми, полів, помилки та прописати їм стилі (де розташувати, шрифт, колір і т.д.)
                 <Form>
-                    <h1>Registration</h1>
+                    <h1>Authorization</h1>
                     <div className='input__container-form'>
                         <div>
                             <label htmlFor="name">Name:</label>
