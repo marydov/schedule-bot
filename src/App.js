@@ -9,23 +9,22 @@ import NotFoundPage from './components/NotFoundPage';
 import Layout from './components/Layout';
 import "./App.scss";
 import { TaskList } from "./context/use-tasks";
-
-const lsData = localStorage.getItem('user');
-const person = JSON.parse(lsData);
+import { ModalActive } from "./context/use-modal";
 
 function App() {
-  const [userName, setUserName] = useState(person.name);
+  const [userName, setUserName] = useState('');
 
   const [taskList, setTaskList] = useState([]);//набір задач, до якого додається новоутворена задача
 
-  function updateUserName(value) {
-    setUserName(value);
-  }
+  const[modalActive, setModalActive] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
   return (
     <>
-      <User.Provider value={{userName, updateUserName}}>
+      <User.Provider value={{userName, setUserName}}>
         <TaskList.Provider value={{ taskList, setTaskList }}>
+          <ModalActive.Provider value={{modalActive, setModalActive, showLoginForm, setShowLoginForm, showRegistrationForm, setShowRegistrationForm}}>
           <HashRouter>
             <Routes>
               <Route path="/" element={<Layout />}>
@@ -35,6 +34,7 @@ function App() {
               </Route>
             </Routes>
           </HashRouter>
+          </ModalActive.Provider>
         </TaskList.Provider>
       </User.Provider>
     </>

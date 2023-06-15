@@ -11,10 +11,10 @@ export default function Task({item}) {
             <Row className="d-flex p-2">
                 <Col md={2}>{curDate}</Col>
                 <Col md={1}>{curTime}</Col>
-                <Col md={5}>{item.taskDescr}</Col>
+                <Col md={4}>{item.taskDescr}</Col>
                 <Col md={2}>{item.remind}</Col>
                 <Col md={1}><button className='btn__task-form'>Видалити</button></Col>
-                <Col md={1}><button className='btn__task-form'>Редагувати</button></Col>
+                <Col md={2}><button className='btn__task-form'>Редагувати</button></Col>
             </Row>
         </>
     );

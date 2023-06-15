@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { TaskList } from '../context/use-tasks';
-import { getTasks } from '../utils/getTask';
+import { ModalActive } from '../context/use-modal';
 
 export default function LoginForm() {
 
-    const { updateUserName } = useContext(User);
-    const { setTaskList } = useContext(TaskList);
+    const { setUserName } = useContext(User);
+    const { setModalActive } = useContext(ModalActive);
 
     const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ export default function LoginForm() {
         
         await fetch(url)
             .then(response => {
-                console.log(response)
+                console.log({response})
                 console.log(response.status)
                 if(!response.ok) throw new Error(response.status);
                 else {
@@ -29,7 +28,7 @@ export default function LoginForm() {
             .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
                 console.log({data});
                 const regResult = JSON.parse(data);
-                console.log(regResult);
+                console.log({regResult});
                 if(regResult.mystatus === 'Password is wrong') {
                     alert('Your password is invalid. Try to log in again.');
                 }else if(regResult.mystatus === 'There is no user with this name') {
@@ -38,19 +37,20 @@ export default function LoginForm() {
                     alert('Login successful!');    
                     setSubmitting(false);//isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
                     localStorage.setItem('user', JSON.stringify({name: values.name, password: values.password}));
-                    const lsData = localStorage.getItem('user');
-                    const person = JSON.parse(lsData);
-                    updateUserName(person.name);
-                    getTasks(person.name, setTaskList);//функція з гет-запитом на список задач
+                    const user = localStorage.getItem('user');
+                    const person = JSON.parse(user);
+                    setUserName(person.name);
                     navigate(`/tasks`);
                     resetForm();//скинути форму
+                    setModalActive(false);
                 }
             })
             .catch((error) => {
                 alert(`Registration failed: ${error.message}`);
                 console.log({error});
                 setSubmitting(false);
-            });       
+            }); 
+
     }
 
     const SignupSchema = Yup.object().shape({

@@ -13,7 +13,7 @@ async function _getTasks(userName, setTaskList) {
             .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
                 console.log({data});
                 const regResult = JSON.parse(data);
-                console.log(regResult);
+                console.log({regResult});
 
                 localStorage.setItem('tasks', JSON.stringify(regResult.arrCurrentTasks));
                     const tasksData = localStorage.getItem('tasks');

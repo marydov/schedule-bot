@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { ModalActive } from '../context/use-modal';
 
 export default function RegistrationForm() {
 
-    const { updateUserName } = useContext(User);
+    const { setUserName } = useContext(User);
+    const { setModalActive } = useContext(ModalActive);
 
     const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ export default function RegistrationForm() {
         
         await fetch(url, options)
             .then(response => {
-                console.log(response)
+                console.log({response})
                 console.log(response.status)
                 if(!response.ok) throw new Error(response.status);
                 else {
@@ -35,7 +37,7 @@ export default function RegistrationForm() {
             .then((data) => { //data - результат виконання setUserData з бекенду, те, що повертає return
                 console.log({data});
                 const regResult = JSON.parse(data);
-                console.log(regResult);
+                console.log({regResult});
                 if(regResult.mystatus === 'The user is registered') {
                     alert('You are already registered!');
                 }else {
@@ -44,16 +46,18 @@ export default function RegistrationForm() {
                     localStorage.setItem('user', JSON.stringify({name: values.name, password: values.password}));
                     const lsData = localStorage.getItem('user');
                     const person = JSON.parse(lsData);
-                    updateUserName(person.name);
+                    setUserName(person.name);
                     navigate(`/tasks`);
                     resetForm();//скинути форму
+                    setModalActive(false);
                 }
             })
             .catch((error) => {
                 alert(`Registration failed: ${error.message}`);
                 console.log('error: ' + error);
                 setSubmitting(false);
-            });       
+            });  
+
     }
 
     const SignupSchema = Yup.object().shape({

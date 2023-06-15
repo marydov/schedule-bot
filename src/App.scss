@@ -24,6 +24,7 @@
 main {
   position: relative;
   flex-grow: 1;
+  padding: 10px;
 }
 
 .content {
@@ -65,19 +66,12 @@ main {
   margin: 0 20px;
 }
 
-// .user-name__header {
-//   // display: flex;
-//   // justify-content: end; header переписати
-//   min-width: 100px;
-//   min-height: 25px;
-//   margin: 0 100px;
-//   padding: 5px;
-//   border: solid 2px #777;
-//   border-radius: 15px;
-//   font-size: large;
-//   font-weight: bold;
-//   text-align: center;
-// }
+.user-name__header {
+  padding-right: 25px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
 
 footer {
   height: 56px;
@@ -123,12 +117,18 @@ form {
 
 button {
   background: #1badda;
-  min-width: 100px;
-  padding: 7px;
+  padding: 5px;
   color: #fff;
-  margin-top: 20px;
   border-radius: 5px;
   font-size: 1.2em;
+}
+
+.logout {
+  border: solid 1px #777 ;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-top: -5px;
+  font-weight: bold;
 }
 
 .task-container {
@@ -136,10 +136,11 @@ button {
   margin-bottom: -2px;
 }
 
-.btn__task-form {
-  margin-top: 0;
-  padding: 5px;
+.open-btn {
+  min-width: 100px;
+  margin-top: 20px;
 }
+
 
 
 

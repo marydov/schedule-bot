@@ -96,7 +96,7 @@ export default function TaskForm() {
                                 <Field name="dateTime" type="datetime-local" />
                                 <ErrorMessage name="dateTime" render={msg => <p className="error__message-form">{msg}</p>} />
                             </Col>
-                            <Col md={5} className='input__container-form'>
+                            <Col md={4} className='input__container-form'>
                                 <Field as="textarea" name="taskDescr" rows="1" className="taskDescr__textarea" />
                                 <ErrorMessage name="taskDescr" render={msg => <p className="error__message-form">{msg}</p>} />
                             </Col>
@@ -104,6 +104,9 @@ export default function TaskForm() {
                                 <Field as="select" name="remind">
                                     <option value="">Нагадувати</option>
                                     <option value="once">Одноразово</option>
+                                    <option value="daily">Щоденно</option>
+                                    <option value="weekly">Щотижня</option>
+                                    <option value="monthly">Раз в місяць</option>
                                     <option value="annually">Щорічно</option>
                                 </Field>
                                 <ErrorMessage name="remind" render={msg => <p className="error__message-form">{msg}</p>} />
@@ -111,7 +114,7 @@ export default function TaskForm() {
                             <Col md={1}>
                                 <button type="submit" className='btn__task-form' disabled={isSubmitting}>Додати</button>
                             </Col>
-                            <Col md={1}>
+                            <Col md={2}>
                                 <button type="reset" className='btn__task-form'>Видалити</button>
                             </Col>
                         </Row>                   
