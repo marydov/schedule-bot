@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/schedule-bot/static/css/main.264c07dd.css",
-    "main.js": "/schedule-bot/static/js/main.a2fe700a.js",
+    "main.js": "/schedule-bot/static/js/main.90a71e13.js",
     "static/js/787.8ebf909a.chunk.js": "/schedule-bot/static/js/787.8ebf909a.chunk.js",
     "static/media/clock.png": "/schedule-bot/static/media/clock.4c41418e4cbca375b855.png",
     "index.html": "/schedule-bot/index.html",
     "main.264c07dd.css.map": "/schedule-bot/static/css/main.264c07dd.css.map",
-    "main.a2fe700a.js.map": "/schedule-bot/static/js/main.a2fe700a.js.map",
+    "main.90a71e13.js.map": "/schedule-bot/static/js/main.90a71e13.js.map",
     "787.8ebf909a.chunk.js.map": "/schedule-bot/static/js/787.8ebf909a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.264c07dd.css",
-    "static/js/main.a2fe700a.js"
+    "static/js/main.90a71e13.js"
   ]
 }
