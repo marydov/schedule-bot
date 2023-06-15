@@ -57,7 +57,7 @@ export default function LoginForm() {
         name: Yup.string()
         .min(3, 'Must be at least 3 characters!')
         .max(20, 'Must be 20 characters or less!')
-        .matches(/^[a-zA-Z0-9]+$/, 'Only letters and numbers are allowed')//^ початок рядка $ кінець рядка [a-zA-Z0-9] регулярний вираз(всі букви, всі цифри)
+        .matches(/^[a-zA-Z0-9_]+$/, 'Only letters, numbers and underscores are allowed')//^ початок рядка $ кінець рядка [a-zA-Z0-9] регулярний вираз(всі букви, всі цифри)
         .required('Required'),
         password: Yup.string()
         .min(8, 'Must be at least 8 characters!')
