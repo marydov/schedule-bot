@@ -25,13 +25,14 @@ export default function TaskForm() {
         const options = {
             method: 'POST',
             body: JSON.stringify({
-                    route: 'newTask',
-                    name: userName,
-                    dateTime: values.dateTime, 
-                    taskDescr: values.taskDescr,
-                    taskID: taskID,
-                    remind: values.remind,
-         })}
+                route: 'newTask',
+                name: userName,
+                dateTime: values.dateTime, 
+                taskDescr: values.taskDescr,
+                taskID: taskID,
+                remind: values.remind,
+            })
+        }
         
         await fetch(url, options)
             .then(response => {

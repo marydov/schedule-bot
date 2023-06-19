@@ -21,10 +21,12 @@ const showDropdown = (handleLoginClick, handleRegistrationClick) => {
 const showUserName = (userName, handleLogout) => {
   return (
     <>
-      <button className="btn btn-light logout" onClick={handleLogout}>
+      {/* <button className="btn btn-light logout" onClick={handleLogout}>
         Logout
-      </button>
-      <div className='user-name__header'>{userName}</div>
+      </button> */}
+      <Nav.Link  className="btn btn-light logout" onClick={handleLogout}>Logout</Nav.Link>
+      {/* <div className='user-name__header'>{userName}</div> */}
+      <Nav.Link className='user-name__header'>{userName}</Nav.Link>
     </>
   );
 };

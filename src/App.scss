@@ -67,10 +67,8 @@ main {
 }
 
 .user-name__header {
-  padding-right: 25px;
-  font-size: large;
+  color: #000;
   font-weight: bold;
-  text-align: center;
 }
 
 footer {
@@ -124,11 +122,9 @@ button {
 }
 
 .logout {
-  border: solid 1px #777 ;
-  border-radius: 5px;
+  color: #000;
   margin-right: 20px;
-  margin-top: -5px;
-  font-weight: bold;
+  margin-top: -1px;
 }
 
 .task-container {
