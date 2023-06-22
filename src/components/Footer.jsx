@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
       <footer>
-        Виконано: {' '}
-        <span>Орищук Марина</span>{' '}
+        {/* Виконано: {' '} */}
+        <span>Orishchuk Marina</span>{' '}
         &copy; 2023
       </footer>
     );
