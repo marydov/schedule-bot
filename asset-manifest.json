@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/schedule-bot/static/css/main.4082fa0d.css",
-    "main.js": "/schedule-bot/static/js/main.87c7d6ae.js",
+    "main.css": "/schedule-bot/static/css/main.6338c454.css",
+    "main.js": "/schedule-bot/static/js/main.7d721f89.js",
     "static/js/787.8ebf909a.chunk.js": "/schedule-bot/static/js/787.8ebf909a.chunk.js",
     "static/media/clock.png": "/schedule-bot/static/media/clock.4c41418e4cbca375b855.png",
     "index.html": "/schedule-bot/index.html",
-    "main.4082fa0d.css.map": "/schedule-bot/static/css/main.4082fa0d.css.map",
-    "main.87c7d6ae.js.map": "/schedule-bot/static/js/main.87c7d6ae.js.map",
+    "main.6338c454.css.map": "/schedule-bot/static/css/main.6338c454.css.map",
+    "main.7d721f89.js.map": "/schedule-bot/static/js/main.7d721f89.js.map",
     "787.8ebf909a.chunk.js.map": "/schedule-bot/static/js/787.8ebf909a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4082fa0d.css",
-    "static/js/main.87c7d6ae.js"
+    "static/css/main.6338c454.css",
+    "static/js/main.7d721f89.js"
   ]
 }
