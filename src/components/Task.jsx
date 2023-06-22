@@ -2,15 +2,18 @@ import { Row, Col } from 'react-bootstrap';
 import moment from 'moment/moment';
 import { useContext } from 'react';
 import { TaskList } from '../context/use-tasks';
+import { ModalActive } from "../context/use-modal";
 
 export default function Task({item}) {
 
     const { taskList, setTaskList } = useContext(TaskList);
+    const { setIsLoaded } = useContext(ModalActive);
 
     const curDate = moment(item.dateTime).format('Do MMMM YYYY');
     const curTime = moment(item.dateTime).format('h:mm:ss a');
 
     const handleDeleteTask = async (event) => {
+        setIsLoaded(false);
         const btnTaskID = event.currentTarget.id;
         console.log('Клікнуто на кнопку з id:', event.currentTarget.id);//це айдішнік задачі на кнопці
 
@@ -25,6 +28,7 @@ export default function Task({item}) {
                 }
             })
             .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
+                setIsLoaded(true);
                 console.log({data});
                 const regResult = JSON.parse(data);
                     alert(regResult.mystatus);
@@ -50,9 +54,10 @@ export default function Task({item}) {
                 <Col md={1}>{curTime}</Col>
                 <Col md={4}>{item.taskDescr}</Col>
                 <Col md={2}>{item.remind}</Col>
-                <Col md={1}><button className='btn__task-form' id={item.taskID} onClick={handleDeleteTask}>Видалити</button></Col>
-                <Col md={2}><button className='btn__task-form'>Редагувати</button></Col>
+                <Col md={1}></Col>
+                <Col md={2}><button className='btn__task-form' id={item.taskID} onClick={handleDeleteTask}>Видалити</button></Col>
             </Row>
         </>
     );
 }
+

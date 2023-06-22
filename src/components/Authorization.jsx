@@ -11,13 +11,13 @@ export default function Authorization() {
   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowRegistrationForm(false);
-    setModalActive(true)
+    setModalActive(true);
   };
 
   const handleRegistrationClick = () => {
     setShowLoginForm(false);
     setShowRegistrationForm(true);
-    setModalActive(true)
+    setModalActive(true);
   };
 
  return (

@@ -10,6 +10,7 @@ import Layout from './components/Layout';
 import "./App.scss";
 import { TaskList } from "./context/use-tasks";
 import { ModalActive } from "./context/use-modal";
+import Preloader from "./components/Preloader";
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -19,12 +20,14 @@ function App() {
   const[modalActive, setModalActive] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   return (
     <>
       <User.Provider value={{userName, setUserName}}>
         <TaskList.Provider value={{ taskList, setTaskList }}>
-          <ModalActive.Provider value={{modalActive, setModalActive, showLoginForm, setShowLoginForm, showRegistrationForm, setShowRegistrationForm}}>
+          <ModalActive.Provider 
+            value={{modalActive, setModalActive, showLoginForm, setShowLoginForm, showRegistrationForm, setShowRegistrationForm, isLoaded, setIsLoaded}}>
           <HashRouter>
             <Routes>
               <Route path="/" element={<Layout />}>
@@ -37,6 +40,10 @@ function App() {
           </ModalActive.Provider>
         </TaskList.Provider>
       </User.Provider>
+      {!isLoaded
+        ? <Preloader />
+        : null
+      }
     </>
   );
 }

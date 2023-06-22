@@ -8,11 +8,12 @@ import { ModalActive } from '../context/use-modal';
 export default function LoginForm() {
 
     const { setUserName } = useContext(User);
-    const { setModalActive } = useContext(ModalActive);
+    const { setModalActive, setIsLoaded } = useContext(ModalActive);
 
     const navigate = useNavigate();
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        setIsLoaded(false);
 
         const url = "https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec?action=login&name="+values.name+"&password="+values.password;
         
@@ -26,6 +27,7 @@ export default function LoginForm() {
                 }
             })
             .then((data) => { //data - результат виконання doGet з бекенду, те, що повертає return
+                setIsLoaded(true);
                 console.log({data});
                 const regResult = JSON.parse(data);
                 console.log({regResult});
@@ -94,7 +96,7 @@ export default function LoginForm() {
                         <Field name="password" type="password" />
                         <ErrorMessage name="password" render={msg => <p className="error__message-form">{msg}</p>} />
                     </div>
-                    <button type="submit" disabled={isSubmitting}>Submit</button>
+                    <button type="submit" disabled={isSubmitting} className='btn__submit'>Submit</button>
                 </Form>
                 )}
             </Formik>

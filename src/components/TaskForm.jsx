@@ -4,11 +4,13 @@ import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { ModalActive } from "../context/use-modal";
 
 export default function TaskForm() {
 
     const { userName } = useContext(User);
     const { taskList, setTaskList } = useContext(TaskList);
+    const { setIsLoaded } = useContext(ModalActive);
 
     const today = new Date();
     const currentHours = today.getHours();
@@ -19,6 +21,7 @@ export default function TaskForm() {
     today.setHours(currentHours, currentMinutes, currentSeconds, currentMilliseconds);
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        setIsLoaded(false);
 
         const url = 'https://script.google.com/macros/s/AKfycbynBQ-c3MRh9QPe9rwd8JIKzK6jIInknIWQWkMLP4GaGGaNz8uzADVJ3aCzWCxSgYMC/exec';
         
@@ -44,6 +47,7 @@ export default function TaskForm() {
                 }
             })
             .then((data) => { //data - результат виконання setUserData з бекенду, те, що повертає return
+                setIsLoaded(true);
                 console.log({data});
                 const regResult = JSON.parse(data);
                 console.log(regResult);

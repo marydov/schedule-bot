@@ -21,11 +21,7 @@ const showDropdown = (handleLoginClick, handleRegistrationClick) => {
 const showUserName = (userName, handleLogout) => {
   return (
     <>
-      {/* <button className="btn btn-light logout" onClick={handleLogout}>
-        Logout
-      </button> */}
       <Nav.Link  className="btn btn-light logout" onClick={handleLogout}>Logout</Nav.Link>
-      {/* <div className='user-name__header'>{userName}</div> */}
       <Nav.Link className='user-name__header'>{userName}</Nav.Link>
     </>
   );
@@ -67,14 +63,14 @@ export default function Header() {
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar'>
-      <Navbar.Brand href="/">
-        <img
+      <img
           src={clock}
           width="30"
           height="30"
           className="d-inline-block align-top"
           alt="clock"
-        />
+      />
+      <Navbar.Brand href="#/" style={{border: "0px"}} >
         <span className='brand__name'>REMINDER</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

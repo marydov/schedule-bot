@@ -69,6 +69,12 @@ main {
 .user-name__header {
   color: #000;
   font-weight: bold;
+  cursor: auto;
+}
+
+.user-name__header:hover,
+.user-name__header:focus {
+  color: #000;
 }
 
 footer {
@@ -111,11 +117,15 @@ form {
     font-size: 14px;
     color: #ff0000;
   }
+
+  .btn__submit {
+    margin-top: 25px;
+  }
 }
 
 button {
   background: #1badda;
-  padding: 5px;
+  padding: 1px 5px;
   color: #fff;
   border-radius: 5px;
   font-size: 1.2em;
