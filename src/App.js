@@ -11,6 +11,8 @@ import "./App.scss";
 import { TaskList } from "./context/use-tasks";
 import { ModalActive } from "./context/use-modal";
 import Preloader from "./components/preloader/Preloader";
+import About from "./components/About";
+import Contacts from "./components/Contacts";
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -33,6 +35,8 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<Authorization />} />
                 <Route path="tasks" element={<Tasks />} />
+                <Route path="about" element={<About />} />
+                <Route path="contacts" element={<Contacts />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>

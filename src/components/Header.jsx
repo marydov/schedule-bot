@@ -53,14 +53,6 @@ export default function Header() {
     navigate('/');
   }
 
-  const handleHomePageClick = () => {
-    navigate('/');
-  }
-
-  const handleTaskPageClick = () => {
-    navigate('tasks');
-  }
-
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar'>
       <img
@@ -76,8 +68,10 @@ export default function Header() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="#"  className="nav__item-name" onClick={handleHomePageClick}>Home</Nav.Link>
-          <Nav.Link href="#"  className="nav__item-name" onClick={handleTaskPageClick}>Tasks</Nav.Link>
+          <Nav.Link href="#/" className="nav__item-name">Home</Nav.Link>
+          <Nav.Link href="#/about" className="nav__item-name">About</Nav.Link>
+          <Nav.Link href="#/contacts" className="nav__item-name">Contacts</Nav.Link>
+          <Nav.Link href="#/tasks"  className="nav__item-name">Tasks</Nav.Link>
         </Nav>
         <Nav>
           {
@@ -89,7 +83,6 @@ export default function Header() {
       </Navbar.Collapse>
     </Navbar>
   );
-
 }
 
 
