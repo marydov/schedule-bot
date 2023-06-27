@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../context/use-user';
 import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
-import TaskForm from './TaskForm';
-import Task from './Task';
+import TaskForm from '../components/TaskForm';
+import Task from '../components/Task';
 import { getTasks } from '../utils/getTasks';
 
 export default function Tasks() {

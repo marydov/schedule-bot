@@ -3,14 +3,14 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState } from "react";
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { User } from "./context/use-user";
-import Authorization from './components/Authorization';
-import Tasks from './components/Tasks';
-import NotFoundPage from './components/NotFoundPage';
-import Layout from './components/Layout';
+import Authorization from './routes/Authorization';
+import Tasks from './routes/Tasks';
+import NotFoundPage from './routes/NotFoundPage';
+import Layout from './routes/Layout';
 import "./App.scss";
 import { TaskList } from "./context/use-tasks";
 import { ModalActive } from "./context/use-modal";
-import Preloader from "./components/Preloader";
+import Preloader from "./components/preloader/Preloader";
 
 function App() {
   const [userName, setUserName] = useState('');

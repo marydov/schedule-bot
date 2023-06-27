@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import Modal from './Modal';
-import RegistrationForm from "./RegistrationForm";
-import LoginForm from "./LoginForm";
+import Modal from '../components/modal/Modal';
+import RegistrationForm from "../components/RegistrationForm";
+import LoginForm from "../components/LoginForm";
 import { ModalActive } from "../context/use-modal";
 
 export default function Authorization() {

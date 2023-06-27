@@ -1,6 +1,6 @@
-import "./modal.scss";
-import { ModalActive } from "../context/use-modal";
 import { useContext } from "react";
+import { ModalActive } from "../../context/use-modal";
+import "./modal.scss";
 
 export default function Modal({children}) {
 

@@ -13,6 +13,7 @@ export default function Task({item}) {
     const curTime = moment(item.dateTime).format('h:mm:ss a');
 
     const handleDeleteTask = async (event) => {
+        if(!window.confirm('Are you sure to delete this task?')) return;
         setIsLoaded(false);
         const btnTaskID = event.currentTarget.id;
         console.log('Клікнуто на кнопку з id:', event.currentTarget.id);//це айдішнік задачі на кнопці
