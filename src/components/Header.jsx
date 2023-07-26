@@ -1,11 +1,11 @@
-import { User } from '../context/use-user'; 
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import clock from '../images/clock.png'
-import { useContext } from 'react';
+import { User } from '../context/use-user';
 import { ModalActive } from '../context/use-modal';
-import { useNavigate } from 'react-router-dom';
+import clock from '../images/clock.png';
 
 const showDropdown = (handleLoginClick, handleRegistrationClick) => {
   return (

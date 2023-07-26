@@ -16,9 +16,9 @@ async function _getTasks(userName, setTaskList) {
                 console.log({regResult});
 
                 localStorage.setItem('tasks', JSON.stringify(regResult.arrCurrentTasks));
-                    const tasksData = localStorage.getItem('tasks');
-                    const curTasks = JSON.parse(tasksData);
-                    setTaskList(curTasks);
+                const tasksData = localStorage.getItem('tasks');
+                const curTasks = JSON.parse(tasksData);
+                setTaskList(curTasks);
             })
             .catch((error) => {
                 alert(error.message);

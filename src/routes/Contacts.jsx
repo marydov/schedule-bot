@@ -1,4 +1,20 @@
+import { useEffect, useContext } from "react";
+import { User } from "../context/use-user";
+
 export default function Contacts() {
+
+  const { setUserName } = useContext(User);
+
+  useEffect(() => {
+
+    const user = localStorage.getItem('user');
+    const person = JSON.parse(user);
+
+    if (user) {
+        setUserName(person.name);
+    }
+
+}, [setUserName]);
     
     return (
       <>

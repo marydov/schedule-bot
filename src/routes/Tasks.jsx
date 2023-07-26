@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../context/use-user';
-import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
 import TaskForm from '../components/TaskForm';
 import Task from '../components/Task';
+import { User } from '../context/use-user';
+import { TaskList } from '../context/use-tasks';
 import { getTasks } from '../utils/getTasks';
 
 export default function Tasks() {
@@ -21,7 +21,6 @@ export default function Tasks() {
         if (user) {
             setUserName(person.name);
             getTasks(person.name, setTaskList);
-            console.log(24 + userName);
 
         } else {
             navigate('/');

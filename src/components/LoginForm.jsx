@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../context/use-user';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { ModalActive } from '../context/use-modal';
+import { User } from '../context/use-user';
 
 export default function LoginForm() {
 
@@ -79,7 +79,6 @@ export default function LoginForm() {
             onSubmit={handleSubmit}
             >
                 {({ isSubmitting }) => ( //isSubmitting - стан подання форми, true (надсилання триває), false (форма відправлена)
-                //можна додати className для форми, полів, помилки та прописати їм стилі (де розташувати, шрифт, колір і т.д.)
                 <Form>
                     <h1>Authorization</h1>
                     <div className='input__container-form'>

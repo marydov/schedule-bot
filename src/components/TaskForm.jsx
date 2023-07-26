@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { User } from '../context/use-user';
-import { TaskList } from '../context/use-tasks';
 import { Row, Col } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { User } from '../context/use-user';
+import { TaskList } from '../context/use-tasks';
 import { ModalActive } from "../context/use-modal";
 
 export default function TaskForm() {

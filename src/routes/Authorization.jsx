@@ -1,12 +1,26 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Modal from '../components/modal/Modal';
 import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
+import { User } from "../context/use-user";
 import { ModalActive } from "../context/use-modal";
 
 export default function Authorization() {
 
+  const { setUserName } = useContext(User);
+
   const { showLoginForm, showRegistrationForm, setShowLoginForm, setShowRegistrationForm, setModalActive } = useContext(ModalActive);
+
+  useEffect(() => {
+
+    const user = localStorage.getItem('user');
+    const person = JSON.parse(user);
+
+    if (user) {
+        setUserName(person.name);
+    }
+
+}, [setUserName]);
 
   const handleLoginClick = () => {
     setShowLoginForm(true);

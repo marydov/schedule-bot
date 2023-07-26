@@ -1,4 +1,20 @@
+import { useEffect, useContext } from "react";
+import { User } from "../context/use-user";
+
 export default function About() {
+
+    const { setUserName } = useContext(User);
+
+    useEffect(() => {
+
+    const user = localStorage.getItem('user');
+    const person = JSON.parse(user);
+
+    if (user) {
+        setUserName(person.name);
+    }
+
+    }, [setUserName]);
     
     return (
       <>
@@ -14,7 +30,7 @@ export default function About() {
                         <li>Front-end розробка — Prometheus (липень 2022 - жовтень 2022) - сертифікат з відзнакою</li>
                     </ul>
                 </li>
-                <li>Під час навчання виконала навчальний проект Книжковий інтернет-магазин, подивитись його можна за 
+                <li>Під час навчання виконала навчальний проект Книжковий інтернет-магазин, подивитись його можна за &nbsp; 
                     <a href="https://marydov.github.io/x-course-task/" 
                     target="_blank"
                     rel="noopener noreferrer">посиланням</a> 
